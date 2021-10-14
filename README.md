@@ -119,8 +119,8 @@ See [variables.tf] and [examples/] for details and use-cases.
 
   ```hcl
   policy_bindings = [{
-    role       = "roles/viewer"
-    members    = ["user:member@example.com"]
+    role    = "roles/viewer"
+    members = ["user:member@example.com"]
   }]
   ```
 
