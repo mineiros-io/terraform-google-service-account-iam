@@ -34,40 +34,10 @@ secure, and production-grade cloud infrastructure.
 
 ## Module Features
 
-<!-- info: please adjust the following text -->
-
-This module implements the following terraform resources
-
-- `google_resource`
-- `google_something_else`
-
-and supports additional features of the following modules:
-
-<!-- markdown-link-check-disable -->
-- [mineiros-io/something/google](https://github.com/mineiros-io/terraform-google-something)
-<!-- markdown-link-check-enable -->
-
-<!--
-These are some of our custom features:
-
-- **Default Security Settings**:
-  secure by default by setting security to `true`, additional security can be added by setting some feature to `enabled`
-
-- **Standard Module Features**:
-  Cool Feature of the main resource, tags
-
-- **Extended Module Features**:
-  Awesome Extended Feature of an additional related resource,
-  and another Cool Feature
-
-- **Additional Features**:
-  a Cool Feature that is not actually a resource but a cool set up from us
-
-- _Features not yet implemented_:
-  Standard Features missing,
-  Extended Features planned,
-  Additional Features planned
--->
+- `google_service_account_iam_binding`
+- `google_service_account_iam_member`
+- `google_service_account_iam_policy`
+- `google_iam_policy`
 
 ## Getting Started
 
@@ -76,6 +46,10 @@ Most basic usage just setting required arguments:
 ```hcl
 module "terraform-google-service-account-iam" {
   source = "github.com/mineiros-io/terraform-google-service-account-iam?ref=v0.1.0"
+
+  service_account_id = "my-service-account-id"
+  role               = "roles/iam.serviceAccountUser"
+  members            = ["user:member@example.com"]
 }
 ```
 
@@ -107,58 +81,87 @@ See [variables.tf] and [examples/] for details and use-cases.
 
 #### Main Resource Configuration
 
-<!-- Example of a required variable:
+- **`service_account_id`**: **_(Required `string`)_**
 
-- **`name`**: **_(Required `string`)_**
+  The fully-qualified name of the service account to apply policy to.
 
-  The name of the resource.
+- **`members`**: **_(Optional `string`)_
 
-  Default is `"name"`.
+  Identities that will be granted the privilege in role. Each entry can have one of the following values:
+  - `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.
+  - `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.
+  - `user:{emailid}`: An email address that represents a specific Google account. For example, alice@gmail.com or joe@example.com.
+  - `serviceAccount:{emailid}`: An email address that represents a service account. For example, my-other-app@appspot.gserviceaccount.com.
+  - `group:{emailid}`: An email address that represents a Google group. For example, admins@example.com.
+  - `domain:{domain}`: A G Suite domain (primary, instead of alias) name that represents all the users of that domain. For example, google.com or example.com.
 
--->
+  Default is `[]`.
 
-<!-- Example of an optional variable:
+- **`role`**: _(Optional `string`)_
 
-- **`name`**: _(Optional `string`)_
+  The role that should be applied. Note that custom roles must be of the format `[projects|organizations]/{parent-name}/roles/{role-name}`.
 
-  The name of the resource.
+- **`project`**: _(Optional `string`)_
 
-  Default is `"name"`.
+  The resource name of the project the policy is attached to. Its format is `projects/{project_id}`.
 
--->
+- **`authoritative`**: _(Optional `bool`)_
 
-<!-- Example of an object:
-     - We use inline documentation to describe complex objects or lists/maps of complex objects.
-     - Please indent each level with 2 spaces so the documentation is rendered in a readable way.
+  Whether to exclusively set (authoritative mode) or add (non-authoritative/additive mode) members to the role.
 
-- **`user`**: _(Optional `object(user)`)_
+  Default is `true`.
 
-  A user object.
+- **`policy_bindings`**: _(Optional `list(policy_bindings)`)_
+
+  A list of IAM policy bindings.
 
   Example
 
   ```hcl
-  user = {
-    name        = "marius"
-    description = "The guy from Berlin."
-  }
+  policy_bindings = [{
+    role       = "roles/viewer"
+    members    = ["user:member@example.com"]
+  }]
   ```
 
-  Default is `{}`.
+  Each `policy_bindings` object can can the fllowing fields:
 
-  A/Each `user` object can have the following fields:
+  - **`role`**: **_(Required `string`)_**
 
-  - **`name`**: **_(Required `string`)_**
+    The role that should be applied.
 
-    The Name of the user.
+  - **`members`**: **_(Required `string`)_**
 
-  - **`description`**: _(Optional `decription`)_
+    Identities that will be granted the privilege in `role`.
 
-    A description describing the user in more detail.
+    Default is `var.members`.
 
-    Default is `""`.
+  - **`condition`**: _(Optional `object(condition)`)_
 
--->
+    An IAM Condition for a given binding.
+
+    Example
+
+    ```hcl
+    condition = {
+      expression = "request.time < timestamp(\"2022-01-01T00:00:00Z\")"
+      title      = "expires_after_2021_12_31"
+    }
+  ```
+
+  A `condition` object can can the fllowing fields:
+
+  - **`expression`**: **_(Required `string`)_**
+
+    Textual representation of an expression in Common Expression Language syntax.
+
+  - **`title`**: **_(Required `string`)_**
+
+    A title for the expression, i.e. a short string describing its purpose.
+
+  - **`description`**: _(Optional `string`)_
+
+    An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
 
 #### Extended Resource Configuration
 
@@ -170,18 +173,20 @@ The following attributes are exported in the outputs of the module:
 
   Whether this module is enabled.
 
-<!-- all outputs in outputs.tf-->
+- **`iam`**
+
+  All attributes of the created `iam_binding` or `iam_member` or `iam_policy` resource according to the mode.
 
 ## External Documentation
 
 ### Google Documentation
 <!-- markdown-link-check-disable -->
 
-  - https://link-to-docs
+  - https://cloud.google.com/iam/docs/service-accounts
 
 ### Terraform Google Provider Documentation:
 
-  - https://www.terraform.io/docs/providers/google/r/something.html
+  - https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_service_account_iam
 <!-- markdown-link-check-disable -->
 
 ## Module Versioning
@@ -241,7 +246,7 @@ Copyright &copy; 2020-2021 [Mineiros GmbH][homepage]
 
 <!-- markdown-link-check-disable -->
 
-[badge-build]: https://github.com/mineiros-io/terraform-google-premium-modules/workflows/Tests/badge.svg
+[badge-build]: https://github.com/mineiros-io/terraform-google-service-account-iam/workflows/Tests/badge.svg
 
 <!-- markdown-link-check-enable -->
 
@@ -252,8 +257,8 @@ Copyright &copy; 2020-2021 [Mineiros GmbH][homepage]
 
 <!-- markdown-link-check-disable -->
 
-[build-status]: https://github.com/mineiros-io/terraform-google-premium-modules/modules/terraform-google-service-account-iam/actions
-[releases-github]: https://github.com/mineiros-io/terraform-google-premium-modules/modules/terraform-google-service-account-iam/releases
+[build-status]: https://github.com/mineiros-io/terraform-google-service-account-iam/actions
+[releases-github]: https://github.com/mineiros-io/terraform-google-service-account-iam/releases
 
 <!-- markdown-link-check-enable -->
 
@@ -268,12 +273,12 @@ Copyright &copy; 2020-2021 [Mineiros GmbH][homepage]
 
 <!-- markdown-link-check-disable -->
 
-[variables.tf]: https://github.com/mineiros-io/terraform-google-premium-modules/blob/modules/terraform-google-service-account-iam/main/variables.tf
-[examples/]: https://github.com/mineiros-io/terraform-google-premium-modules/blob/modules/terraform-google-service-account-iam/main/examples
-[issues]: https://github.com/mineiros-io/terraform-google-premium-modules/issues
-[license]: https://github.com/mineiros-io/terraform-google-premium-modules/blob/main/LICENSE
-[makefile]: https://github.com/mineiros-io/terraform-google-premium-modules/blob/main/Makefile
-[pull requests]: https://github.com/mineiros-io/terraform-google-premium-modules/pulls
-[contribution guidelines]: https://github.com/mineiros-io/terraform-google-premium-modules/blob/main/CONTRIBUTING.md
+[variables.tf]: https://github.com/mineiros-io/terraform-google-service-account-iam/main/variables.tf
+[examples/]: https://github.com/mineiros-io/terraform-google-service-account-iam/main/examples
+[issues]: https://github.com/mineiros-io/terraform-google-service-account-iam/issues
+[license]: https://github.com/mineiros-io/terraform-google-service-account-iam/blob/main/LICENSE
+[makefile]: https://github.com/mineiros-io/terraform-google-service-account-iam/blob/main/Makefile
+[pull requests]: https://github.com/mineiros-io/terraform-google-service-account-iam/pulls
+[contribution guidelines]: https://github.com/mineiros-io/terraform-google-service-account-iam/blob/main/CONTRIBUTING.md
 
 <!-- markdown-link-check-enable -->
