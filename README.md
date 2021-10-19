@@ -124,7 +124,7 @@ See [variables.tf] and [examples/] for details and use-cases.
   }]
   ```
 
-  Each `policy_bindings` object can can the fllowing fields:
+  Each `policy_bindings` object can have the following fields:
 
   - **`role`**: **_(Required `string`)_**
 
@@ -149,7 +149,7 @@ See [variables.tf] and [examples/] for details and use-cases.
     }
   ```
 
-  A `condition` object can can the fllowing fields:
+  A `condition` object can have the following fields:
 
   - **`expression`**: **_(Required `string`)_**
 
