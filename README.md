@@ -39,7 +39,6 @@ This module implements the following terraform resources:
 - `google_service_account_iam_binding`
 - `google_service_account_iam_member`
 - `google_service_account_iam_policy`
-- `google_iam_policy`
 
 ## Getting Started
 
@@ -149,21 +148,21 @@ See [variables.tf] and [examples/] for details and use-cases.
       expression = "request.time < timestamp(\"2022-01-01T00:00:00Z\")"
       title      = "expires_after_2021_12_31"
     }
-  ```
+    ```
 
-  A `condition` object accepts the following fields:
+    A `condition` object accepts the following fields:
 
-  - **`expression`**: **_(Required `string`)_**
+    - **`expression`**: **_(Required `string`)_**
 
-    Textual representation of an expression in Common Expression Language syntax.
+      Textual representation of an expression in Common Expression Language syntax.
 
-  - **`title`**: **_(Required `string`)_**
+    - **`title`**: **_(Required `string`)_**
 
-    A title for the expression, i.e. a short string describing its purpose.
+      A title for the expression, i.e. a short string describing its purpose.
 
-  - **`description`**: _(Optional `string`)_
+    - **`description`**: _(Optional `string`)_
 
-    An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+      An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
 
 #### Extended Resource Configuration
 
