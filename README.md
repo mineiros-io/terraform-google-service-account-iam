@@ -34,6 +34,8 @@ secure, and production-grade cloud infrastructure.
 
 ## Module Features
 
+This module implements the following terraform resources:
+
 - `google_service_account_iam_binding`
 - `google_service_account_iam_member`
 - `google_service_account_iam_policy`
@@ -85,7 +87,7 @@ See [variables.tf] and [examples/] for details and use-cases.
 
   The fully-qualified name of the service account to apply policy to.
 
-- **`members`**: **_(Optional `string`)_
+- **`members`**: _(Optional `string`)_
 
   Identities that will be granted the privilege in role. Each entry can have one of the following values:
   - `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.
@@ -124,7 +126,7 @@ See [variables.tf] and [examples/] for details and use-cases.
   }]
   ```
 
-  Each `policy_bindings` object can have the following fields:
+  Each `policy_bindings` object accepts the following fields:
 
   - **`role`**: **_(Required `string`)_**
 
@@ -149,7 +151,7 @@ See [variables.tf] and [examples/] for details and use-cases.
     }
   ```
 
-  A `condition` object can have the following fields:
+  A `condition` object accepts the following fields:
 
   - **`expression`**: **_(Required `string`)_**
 
