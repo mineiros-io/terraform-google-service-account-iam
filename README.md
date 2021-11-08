@@ -6,7 +6,7 @@
 
 # terraform-google-service-account-iam
 
-A [Terraform] module for [Google Cloud Platform (GCP)][gcp].
+A [Terraform](https://www.terraform.io) module to create a [Google Service Account IAM](https://cloud.google.com/iam/docs/service-accounts) on [Google Cloud Services (GCP)](https://cloud.google.com/).
 
 **_This module supports Terraform version 1
 and is compatible with the Terraform Google Provider version 3._**
@@ -86,7 +86,7 @@ See [variables.tf] and [examples/] for details and use-cases.
 
   The fully-qualified name of the service account to apply policy to.
 
-- **`members`**: _(Optional `string`)_
+- **`members`**: _(Optional `set(string)`)_
 
   Identities that will be granted the privilege in role. Each entry can have one of the following values:
   - `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.
@@ -104,7 +104,7 @@ See [variables.tf] and [examples/] for details and use-cases.
 
 - **`project`**: _(Optional `string`)_
 
-  The resource name of the project the policy is attached to. Its format is `projects/{project_id}`.
+  The ID of the project in which the resource belongs. If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used.
 
 - **`authoritative`**: _(Optional `bool`)_
 
@@ -131,7 +131,7 @@ See [variables.tf] and [examples/] for details and use-cases.
 
     The role that should be applied.
 
-  - **`members`**: **_(Required `string`)_**
+  - **`members`**: _(Optional `set(string)`)_
 
     Identities that will be granted the privilege in `role`.
 
