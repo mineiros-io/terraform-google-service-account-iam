@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.2]
+
+### Added
+
+- Support for provider 4.x
+
 ## [0.0.1]
 
 ### Added
@@ -15,7 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- markdown-link-check-disable -->
 
-[unreleased]: https://github.com/mineiros-io/terraform-google-service-account-iam/compare/v0.0.1...HEAD
+[unreleased]: https://github.com/mineiros-io/terraform-google-service-account-iam/compare/v0.0.2...HEAD
+[0.0.2]: https://github.com/mineiros-io/terraform-google-service-account-iam/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/mineiros-io/terraform-google-service-account-iam/releases/tag/v0.0.1
 
 <!-- markdown-link-check-disabled -->
