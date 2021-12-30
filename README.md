@@ -72,7 +72,7 @@ See [variables.tf] and [examples/] for details and use-cases.
 
   Default is `true`.
 
-- [**`module_depends_on`**](#var-module_depends_on): *(Optional `list(dependencies)`)*<a name="var-module_depends_on"></a>
+- [**`module_depends_on`**](#var-module_depends_on): *(Optional `list(dependency)`)*<a name="var-module_depends_on"></a>
 
   A list of dependencies. Any object can be _assigned_ to this list to define a hidden external dependency.
 
@@ -93,12 +93,12 @@ See [variables.tf] and [examples/] for details and use-cases.
 - [**`members`**](#var-members): *(Optional `set(string)`)*<a name="var-members"></a>
 
   Identities that will be granted the privilege in role. Each entry can have one of the following values:
-- `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.
-- `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.
-- `user:{emailid}`: An email address that represents a specific Google account. For example, alice@gmail.com or joe@example.com.
-- `serviceAccount:{emailid}`: An email address that represents a service account. For example, my-other-app@appspot.gserviceaccount.com.
-- `group:{emailid}`: An email address that represents a Google group. For example, admins@example.com.
-- `domain:{domain}`: A G Suite domain (primary, instead of alias) name that represents all the users of that domain. For example, google.com or example.com.
+  - `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.
+  - `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.
+  - `user:{emailid}`: An email address that represents a specific Google account. For example, alice@gmail.com or joe@example.com.
+  - `serviceAccount:{emailid}`: An email address that represents a service account. For example, my-other-app@appspot.gserviceaccount.com.
+  - `group:{emailid}`: An email address that represents a Google group. For example, admins@example.com.
+  - `domain:{domain}`: A G Suite domain (primary, instead of alias) name that represents all the users of that domain. For example, google.com or example.com.
 
   Default is `[]`.
 
@@ -116,7 +116,7 @@ See [variables.tf] and [examples/] for details and use-cases.
 
   Default is `true`.
 
-- [**`policy_bindings`**](#var-policy_bindings): *(Optional `list(policy_bindings)`)*<a name="var-policy_bindings"></a>
+- [**`policy_bindings`**](#var-policy_bindings): *(Optional `list(policy_binding)`)*<a name="var-policy_bindings"></a>
 
   A list of IAM policy bindings.
 
@@ -129,19 +129,19 @@ See [variables.tf] and [examples/] for details and use-cases.
   }]
   ```
 
-  The object accepts the following attributes:
+  Each `policy_binding` object in the list accepts the following attributes:
 
-  - [**`role`**](#attr-role-policy_bindings): *(**Required** `string`)*<a name="attr-role-policy_bindings"></a>
+  - [**`role`**](#attr-policy_bindings-role): *(**Required** `string`)*<a name="attr-policy_bindings-role"></a>
 
     The role that should be applied.
 
-  - [**`members`**](#attr-members-policy_bindings): *(Optional `set(string)`)*<a name="attr-members-policy_bindings"></a>
+  - [**`members`**](#attr-policy_bindings-members): *(Optional `set(string)`)*<a name="attr-policy_bindings-members"></a>
 
     Identities that will be granted the privilege in `role`.
 
     Default is `var.members`.
 
-  - [**`condition`**](#attr-condition-policy_bindings): *(Optional `object(condition)`)*<a name="attr-condition-policy_bindings"></a>
+  - [**`condition`**](#attr-policy_bindings-condition): *(Optional `object(condition)`)*<a name="attr-policy_bindings-condition"></a>
 
     An IAM Condition for a given binding.
 
@@ -154,17 +154,17 @@ See [variables.tf] and [examples/] for details and use-cases.
     }
     ```
 
-    The object accepts the following attributes:
+    The `condition` object accepts the following attributes:
 
-    - [**`expression`**](#attr-expression-condition-policy_bindings): *(**Required** `string`)*<a name="attr-expression-condition-policy_bindings"></a>
+    - [**`expression`**](#attr-policy_bindings-condition-expression): *(**Required** `string`)*<a name="attr-policy_bindings-condition-expression"></a>
 
       Textual representation of an expression in Common Expression Language syntax.
 
-    - [**`title`**](#attr-title-condition-policy_bindings): *(**Required** `string`)*<a name="attr-title-condition-policy_bindings"></a>
+    - [**`title`**](#attr-policy_bindings-condition-title): *(**Required** `string`)*<a name="attr-policy_bindings-condition-title"></a>
 
       A title for the expression, i.e. a short string describing its purpose.
 
-    - [**`description`**](#attr-description-condition-policy_bindings): *(Optional `string`)*<a name="attr-description-condition-policy_bindings"></a>
+    - [**`description`**](#attr-policy_bindings-condition-description): *(Optional `string`)*<a name="attr-policy_bindings-condition-description"></a>
 
       An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
 
