@@ -228,11 +228,15 @@ section {
     title   = "Module Outputs"
     content = <<-END
       The following attributes are exported in the outputs of the module:
-
-      - **`iam`**
-
-        All attributes of the created `iam_binding` or `iam_member` or `iam_policy` resource according to the mode.
     END
+
+    output "iam" {
+      type        = bool
+      description = <<-END
+        All attributes of the created `iam_binding` or `iam_member` or
+        `iam_policy` resource according to the mode.
+      END
+    }
   }
 
   section {
