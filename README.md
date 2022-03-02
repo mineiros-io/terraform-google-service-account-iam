@@ -50,7 +50,7 @@ Most basic usage just setting required arguments:
 
 ```hcl
 module "terraform-google-service-account-iam" {
-  source = "github.com/mineiros-io/terraform-google-service-account-iam?ref=v0.1.0"
+  source = "github.com/mineiros-io/terraform-google-service-account-iam?ref=v0.0.4"
 
   service_account_id = "my-service-account-id"
   role               = "roles/iam.serviceAccountUser"
