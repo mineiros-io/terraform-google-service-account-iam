@@ -22,8 +22,8 @@ secure, and production-grade cloud infrastructure.
 - [Getting Started](#getting-started)
 - [Module Argument Reference](#module-argument-reference)
   - [Top-level Arguments](#top-level-arguments)
-    - [Module Configuration](#module-configuration)
     - [Main Resource Configuration](#main-resource-configuration)
+    - [Module Configuration](#module-configuration)
 - [Module Outputs](#module-outputs)
 - [External Documentation](#external-documentation)
   - [Google Documentation](#google-documentation)
@@ -64,26 +64,6 @@ See [variables.tf] and [examples/] for details and use-cases.
 
 ### Top-level Arguments
 
-#### Module Configuration
-
-- [**`module_enabled`**](#var-module_enabled): *(Optional `bool`)*<a name="var-module_enabled"></a>
-
-  Specifies whether resources in the module will be created.
-
-  Default is `true`.
-
-- [**`module_depends_on`**](#var-module_depends_on): *(Optional `list(dependency)`)*<a name="var-module_depends_on"></a>
-
-  A list of dependencies. Any object can be _assigned_ to this list to define a hidden external dependency.
-
-  Example:
-
-  ```hcl
-  module_depends_on = [
-    google_network.network
-  ]
-  ```
-
 #### Main Resource Configuration
 
 - [**`service_account_id`**](#var-service_account_id): *(**Required** `string`)*<a name="var-service_account_id"></a>
@@ -100,16 +80,20 @@ See [variables.tf] and [examples/] for details and use-cases.
   - `group:{emailid}`: An email address that represents a Google group. For example, admins@example.com.
   - `domain:{domain}`: A G Suite domain (primary, instead of alias) name that represents all the users of that domain. For example, google.com or example.com.
   - `principalSet:{Single Identity|All identities in a group|All identities with a specific attribute value|All identities in a pool}`: Grants a role to all the identities in a workload identity pool, or to specific external identities based on their attributes. For details please see https://cloud.google.com/iam/docs/workload-identity-federation.
+  - `computed:{identifier}`: An existing key from var.computed_members_map.
 
   Default is `[]`.
+
+- [**`computed_members_map`**](#var-computed_members_map): *(Optional `map(string)`)*<a name="var-computed_members_map"></a>
+
+  A map of identifiers to identities to be replaced in 'var.members' or in members of `policy_bindings` to handle terraform computed values.
+  The format of each value must satisfy the format as described in `var.members`.
+
+  Default is `{}`.
 
 - [**`role`**](#var-role): *(Optional `string`)*<a name="var-role"></a>
 
   The role that should be applied. Note that custom roles must be of the format `[projects|organizations]/{parent-name}/roles/{role-name}`.
-
-- [**`project`**](#var-project): *(Optional `string`)*<a name="var-project"></a>
-
-  The ID of the project in which the resource belongs. If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used.
 
 - [**`authoritative`**](#var-authoritative): *(Optional `bool`)*<a name="var-authoritative"></a>
 
@@ -168,6 +152,26 @@ See [variables.tf] and [examples/] for details and use-cases.
     - [**`description`**](#attr-policy_bindings-condition-description): *(Optional `string`)*<a name="attr-policy_bindings-condition-description"></a>
 
       An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+
+#### Module Configuration
+
+- [**`module_enabled`**](#var-module_enabled): *(Optional `bool`)*<a name="var-module_enabled"></a>
+
+  Specifies whether resources in the module will be created.
+
+  Default is `true`.
+
+- [**`module_depends_on`**](#var-module_depends_on): *(Optional `list(dependency)`)*<a name="var-module_depends_on"></a>
+
+  A list of dependencies. Any object can be _assigned_ to this list to define a hidden external dependency.
+
+  Example:
+
+  ```hcl
+  module_depends_on = [
+    google_network.network
+  ]
+  ```
 
 ## Module Outputs
 
