@@ -18,6 +18,7 @@ module "test" {
   members = [
     "user:member@example.com",
     "computed:myserviceaccount",
+    "principal:example",
   ]
   computed_members_map = {
     myserviceaccount = "serviceAccount:${module.test-sa.service_account.email}"
