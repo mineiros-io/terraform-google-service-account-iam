@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add support for `principal` identifier format for `members` variable validation
+
 ## [0.1.0]
 
 ### Added
