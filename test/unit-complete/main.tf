@@ -1,5 +1,5 @@
 module "test-sa" {
-  source = "github.com/mineiros-io/terraform-google-service-account?ref=v0.0.10"
+  source = "github.com/mineiros-io/terraform-google-service-account?ref=v0.1.1"
 
   account_id = "service-account-id-${local.random_suffix}"
 }
@@ -99,7 +99,7 @@ module "test4" {
   ]
 
   computed_members_map = {
-    myserviceaccount = "serviceAccount:${module.test-sa.precomputed_email}"
+    myserviceaccount = "serviceAccount:${module.test-sa.service_account.email}"
   }
   # add all optional arguments that create additional/extended resources
 
