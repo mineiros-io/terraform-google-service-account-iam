@@ -60,7 +60,7 @@ module "terraform-google-service-account-iam" {
 
 ## Module Argument Reference
 
-See [variables.tf] and [examples/] for details and use-cases.
+See [variables.tf] and [examples/] for details and use cases.
 
 ### Top-level Arguments
 
@@ -68,11 +68,11 @@ See [variables.tf] and [examples/] for details and use-cases.
 
 - [**`service_account_id`**](#var-service_account_id): *(**Required** `string`)*<a name="var-service_account_id"></a>
 
-  The fully-qualified name of the service account to apply policy to.
+  The fully-qualified name of the service account to apply the policy to.
 
 - [**`members`**](#var-members): *(Optional `set(string)`)*<a name="var-members"></a>
 
-  Identities that will be granted the privilege in role. Each entry can have one of the following values:
+  Identities that will be granted the privilege in the role. Each entry can have one of the following values:
    - `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.
    - `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.
    - `user:{emailid}`: An email address that represents a specific Google account. For example, alice@gmail.com or joe@example.com.
@@ -80,7 +80,7 @@ See [variables.tf] and [examples/] for details and use-cases.
    - `group:{emailid}`: An email address that represents a Google group. For example, admins@example.com.
    - `domain:{domain}`: A G Suite domain (primary, instead of alias) name that represents all the users of that domain. For example, google.com or example.com.
    - `principalSet:{All identities in a group|All identities with a specific attribute value|All identities in a pool}`: Grants a role to all the identities in a workload identity pool, or to specific external identities based on their attributes. For details please see https://cloud.google.com/iam/docs/workload-identity-federation.
-  - `principal:{Single Identity}:` Grants a role to the specified identitiey in a workload identity pool. For details please see https://cloud.google.com/iam/docs/workload-identity-federation.
+  - `principal:{Single Identity}:` Grants a role to the specified identity in a workload identity pool. For details please see https://cloud.google.com/iam/docs/workload-identity-federation.
    - `computed:{identifier}`: An existing key from var.computed_members_map.
 
   Default is `[]`.
@@ -200,8 +200,8 @@ This Module follows the principles of [Semantic Versioning (SemVer)].
 Given a version number `MAJOR.MINOR.PATCH`, we increment the:
 
 1. `MAJOR` version when we make incompatible changes,
-2. `MINOR` version when we add functionality in a backwards compatible manner, and
-3. `PATCH` version when we make backwards compatible bug fixes.
+2. `MINOR` version when we add functionality in a backward compatible manner, and
+3. `PATCH` version when we make backward compatible bug fixes.
 
 ### Backwards compatibility in `0.0.z` and `0.y.z` version
 
@@ -222,7 +222,7 @@ if you have any questions or need help. Feel free to email us at [hello@mineiros
 
 ## Reporting Issues
 
-We use GitHub [Issues] to track community reported issues and missing features.
+We use GitHub [Issues] to track community-reported issues and missing features.
 
 ## Contributing
 
@@ -241,7 +241,7 @@ Run `make help` to see details on each available target.
 This module is licensed under the Apache License Version 2.0, January 2004.
 Please see [LICENSE] for full details.
 
-Copyright &copy; 2020-2022 [Mineiros GmbH][homepage]
+Copyright &copy; 2020-2023 [Mineiros GmbH][homepage]
 
 
 <!-- References -->
@@ -263,8 +263,8 @@ Copyright &copy; 2020-2022 [Mineiros GmbH][homepage]
 [terraform]: https://www.terraform.io
 [gcp]: https://cloud.google.com/
 [semantic versioning (semver)]: https://semver.org/
-[variables.tf]: https://github.com/mineiros-io/terraform-google-service-account-iam/main/variables.tf
-[examples/]: https://github.com/mineiros-io/terraform-google-service-account-iam/main/examples
+[variables.tf]: https://github.com/mineiros-io/terraform-google-service-account-iam/blob/main/variables.tf
+[examples/]: https://github.com/mineiros-io/terraform-google-service-account-iam/tree/main/examples
 [issues]: https://github.com/mineiros-io/terraform-google-service-account-iam/issues
 [license]: https://github.com/mineiros-io/terraform-google-service-account-iam/blob/main/LICENSE
 [makefile]: https://github.com/mineiros-io/terraform-google-service-account-iam/blob/main/Makefile

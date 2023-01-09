@@ -4,13 +4,13 @@
 [![Terraform Version][badge-terraform]][releases-terraform]
 [![Join Slack][badge-slack]][slack]
 
-# Examples for using this Mineiros module
+# Examples of how to use this Mineiros module
 
 <!-- - [example/] Create a Resource. -->
 
-We are sorry, but there are no examples available yet. This is work in progress.
+We are sorry, but there are no examples available yet. This is work-in-progress.
 
-Feel free to contribute by providing a pull-request adding an example.
+Feel free to contribute by providing a pull-request and adding an example.
 
 <!-- References -->
 [example/]: https://github.com/mineiros-io/terraform-google-service-account-iam/blob/main/examples/example
