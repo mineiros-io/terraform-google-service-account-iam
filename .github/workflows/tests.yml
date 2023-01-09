@@ -37,12 +37,10 @@ jobs:
         # actions/setup-go@v3.2.0 -> b22fbbc2921299758641fab08929b4ac52b32923
         uses: actions/setup-go@b22fbbc2921299758641fab08929b4ac52b32923
         with:
-          go-version: 1.17.6
+          go-version: 1.19.1
 
       - name: Set up Terramate
-        # for security reasons we pin commit ids and not tags.
-        # mineiros-io/terramate@v0.1.32 -> 16ba95d2e4a681245450ceec6667afa33bea2753
-        run: go install github.com/mineiros-io/terramate/cmd/terramate@16ba95d2e4a681245450ceec6667afa33bea2753
+        run: go install github.com/mineiros-io/terramate/cmd/terramate@v0.2.7
         env:
           GOPROXY: direct
 
