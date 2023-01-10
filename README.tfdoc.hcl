@@ -78,7 +78,7 @@ section {
   section {
     title   = "Module Argument Reference"
     content = <<-END
-      See [variables.tf] and [examples/] for details and use-cases.
+      See [variables.tf] and [examples/] for details and use cases.
     END
 
     section {
@@ -91,7 +91,7 @@ section {
           required    = true
           type        = string
           description = <<-END
-            The fully-qualified name of the service account to apply policy to.
+            The fully-qualified name of the service account to apply the policy to.
           END
         }
 
@@ -99,7 +99,7 @@ section {
           type        = set(string)
           default     = []
           description = <<-END
-            Identities that will be granted the privilege in role. Each entry can have one of the following values:
+            Identities that will be granted the privilege in the role. Each entry can have one of the following values:
             - `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.
             - `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.
             - `user:{emailid}`: An email address that represents a specific Google account. For example, alice@gmail.com or joe@example.com.
@@ -107,7 +107,7 @@ section {
             - `group:{emailid}`: An email address that represents a Google group. For example, admins@example.com.
             - `domain:{domain}`: A G Suite domain (primary, instead of alias) name that represents all the users of that domain. For example, google.com or example.com.
             - `principalSet:{All identities in a group|All identities with a specific attribute value|All identities in a pool}`: Grants a role to all the identities in a workload identity pool, or to specific external identities based on their attributes. For details please see https://cloud.google.com/iam/docs/workload-identity-federation.
-      	    - `principal:{Single Identity}:` Grants a role to the specified identitiey in a workload identity pool. For details please see https://cloud.google.com/iam/docs/workload-identity-federation.
+      	    - `principal:{Single Identity}:` Grants a role to the specified identity in a workload identity pool. For details please see https://cloud.google.com/iam/docs/workload-identity-federation.
             - `computed:{identifier}`: An existing key from var.computed_members_map.
             END
         }
@@ -119,7 +119,7 @@ section {
              A map of identifiers to identities to be replaced in 'var.members' or in members of `policy_bindings` to handle terraform computed values.
              The format of each value must satisfy the format as described in `var.members`.
            END
-          # TODO: terradoc does not allow use of variables in examples
+          # TODO: terradoc does not allow the use of variables in examples
           # readme_example = <<-END
           #   members = [
           #     "user:member@example.com",
@@ -279,8 +279,8 @@ section {
       Given a version number `MAJOR.MINOR.PATCH`, we increment the:
 
       1. `MAJOR` version when we make incompatible changes,
-      2. `MINOR` version when we add functionality in a backwards compatible manner, and
-      3. `PATCH` version when we make backwards compatible bug fixes.
+      2. `MINOR` version when we add functionality in a backward compatible manner, and
+      3. `PATCH` version when we make backward compatible bug fixes.
     END
 
     section {
@@ -310,7 +310,7 @@ section {
   section {
     title   = "Reporting Issues"
     content = <<-END
-      We use GitHub [Issues] to track community reported issues and missing features.
+      We use GitHub [Issues] to track community-reported issues and missing features.
     END
   }
 
@@ -338,7 +338,7 @@ section {
       This module is licensed under the Apache License Version 2.0, January 2004.
       Please see [LICENSE] for full details.
 
-      Copyright &copy; 2020-2022 [Mineiros GmbH][homepage]
+      Copyright &copy; 2020-2023 [Mineiros GmbH][homepage]
     END
   }
 }
@@ -396,10 +396,10 @@ references {
     value = "https://semver.org/"
   }
   ref "variables.tf" {
-    value = "https://github.com/mineiros-io/terraform-google-service-account-iam/main/variables.tf"
+    value = "https://github.com/mineiros-io/terraform-google-service-account-iam/blob/main/variables.tf"
   }
   ref "examples/" {
-    value = "https://github.com/mineiros-io/terraform-google-service-account-iam/main/examples"
+    value = "https://github.com/mineiros-io/terraform-google-service-account-iam/tree/main/examples"
   }
   ref "issues" {
     value = "https://github.com/mineiros-io/terraform-google-service-account-iam/issues"

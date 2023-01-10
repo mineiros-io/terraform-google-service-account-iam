@@ -20,7 +20,7 @@ For bug reports or requests, please submit your issue in the appropriate reposit
 We advise that you open an issue and ask the
 [CODEOWNERS] and community prior to starting a contribution.
 This is your chance to ask questions and receive feedback before
-writing (potentially wrong) code. We value the direct contact with our community
+writing (potentially wrong) code. We value direct contact with our community
 a lot, so don't hesitate to ask any questions.
 
 ## Fork the repository on GitHub
@@ -59,7 +59,7 @@ tests locally.
 At this point, make your code changes and constantly test again your new test case to make sure that everything working
 properly. Do [commit] early and often and make useful commit messages.
 
-If a backwards incompatible change cannot be avoided, please make sure to call that out when you submit a pull request,
+If a backward incompatible change cannot be avoided, please make sure to mention it when you submit a pull request,
 explaining why the change is absolutely necessary.
 
 ## Create a pull request
@@ -68,7 +68,7 @@ explaining why the change is absolutely necessary.
 Please make sure to include the following:
 
 1. A description of the change, including a link to your GitHub issue.
-1. Any notes on backwards incompatibility or downtime.
+1. Any notes on backward incompatibility or downtime.
 
 ## Merge and release
 
